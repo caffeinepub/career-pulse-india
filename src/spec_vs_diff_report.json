@@ -1,0 +1,48 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-09T05:23:10.096Z",
+  "summary": "`frontend/src/constants/contact.ts` was updated to the new phone/WhatsApp values, but the diff does not provide evidence that all frontend usages (including the floating WhatsApp button and repo-wide removal of old numbers) were updated/verified. Two additional files were modified that were not requested by the BuildRequest.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Ensure the floating WhatsApp button uses the updated WhatsApp URL with message (via `CONTACT.whatsapp.urlWithMessage`) and opens the chat to the new number.",
+      "reason": "The diff only shows updates to `frontend/src/constants/contact.ts`. There is no shown change to the component implementing the floating WhatsApp button (mentioned in summaries as rendered globally in `frontend/src/App.tsx`) to confirm it uses `CONTACT.whatsapp.urlWithMessage` rather than a hardcoded/old URL.",
+      "evidence": [
+        "frontend/src/constants/contact.ts",
+        "frontend-file-summaries.txt (mentions WhatsAppButton in frontend/src/App.tsx, but no actual code diff)"
+      ]
+    },
+    {
+      "id": "REQ-1",
+      "requirement": "A repo-wide check confirms there are no remaining occurrences of \"9888377403\" or \"919888377403\" in frontend source files or user-facing links.",
+      "reason": "The diff summary does not include evidence of a repo-wide search result or updates to all files that might contain hardcoded numbers. Only the constants file is shown updated.",
+      "evidence": [
+        "frontend/src/constants/contact.ts",
+        "frontend-file-summaries.txt (no evidence of search/check results)"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Modified `project_state.json` to add/track new_feature_requests (AR-1/AR-2) and mark status as pending.",
+      "reason": "The BuildRequest only asked to replace phone numbers across frontend/links; it did not request changes to project tracking/state files.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Modified `frontend-file-summaries.txt`.",
+      "reason": "The BuildRequest did not ask for updating documentation/summaries; only functional replacement of phone/WhatsApp/tel links in the frontend.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.72,
+  "changed_files": [
+    "frontend-file-summaries.txt",
+    "frontend/src/constants/contact.ts",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Update frontend contact phone and WhatsApp links to new number",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Replace phone number 9888377403 with 9888955099 across all frontend contact text, tel: links, and WhatsApp (wa.me) links while preserving consistent +91 / 91 formatting.",
+      "acceptanceCriteria": [
+        "`frontend/src/constants/contact.ts` is updated so that: `CONTACT.phone.display` becomes \"+91 9888955099\", `CONTACT.phone.number` becomes \"919888955099\", and `CONTACT.phone.tel` becomes \"tel:+919888955099\".",
+        "`frontend/src/constants/contact.ts` is updated so that: `CONTACT.whatsapp.url` becomes \"https://wa.me/919888955099\" and `CONTACT.whatsapp.urlWithMessage` becomes \"https://wa.me/919888955099?text=Hi,%20I%20have%20a%20query%20about%20your%20services!\" (same prefilled message as before).",
+        "The floating WhatsApp button uses the updated WhatsApp URL with message (via `CONTACT.whatsapp.urlWithMessage`) and opens the chat to the new number.",
+        "A repo-wide check confirms there are no remaining occurrences of \"9888377403\" or \"919888377403\" in frontend source files or user-facing links."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/constants/contact.ts",
+          "operation": "modify",
+          "description": "Update the CONTACT phone and WhatsApp constants to use the new number (display: \"+91 9888955099\"; number: \"919888955099\"; tel: \"tel:+919888955099\"; whatsapp.url: \"https://wa.me/919888955099\"; whatsapp.urlWithMessage: \"https://wa.me/919888955099?text=Hi,%20I%20have%20a%20query%20about%20your%20services!\"). This will propagate to all usages (e.g., Footer contact links and WhatsAppButton)."
+        },
+        {
+          "path": "frontend/scripts/audit-contact-number.js",
+          "operation": "create",
+          "description": "Add a small Node.js script that scans frontend source files for the old phone strings (\"9888377403\" and \"919888377403\") to support the required repo-wide check without changing app behavior."
+        }
+      ]
+    }
+  ]
+}

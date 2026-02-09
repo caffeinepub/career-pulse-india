@@ -1,0 +1,191 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: oklch(98.5% 0.002 240);
+    --foreground: oklch(20% 0.01 200);
+    --card: oklch(100% 0 0);
+    --card-foreground: oklch(20% 0.01 200);
+    --popover: oklch(100% 0 0);
+    --popover-foreground: oklch(20% 0.01 200);
+    --primary: oklch(65% 0.18 45);
+    --primary-foreground: oklch(100% 0 0);
+    --secondary: oklch(18% 0.02 200);
+    --secondary-foreground: oklch(100% 0 0);
+    --muted: oklch(96% 0.002 240);
+    --muted-foreground: oklch(50% 0.01 200);
+    --accent: oklch(96% 0.002 240);
+    --accent-foreground: oklch(20% 0.01 200);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(100% 0 0);
+    --border: oklch(88% 0.002 240);
+    --input: oklch(88% 0.002 240);
+    --ring: oklch(65% 0.18 45);
+    --radius: 0.5rem;
+    --chart-1: oklch(65% 0.18 45);
+    --chart-2: oklch(70% 0.12 120);
+    --chart-3: oklch(60% 0.18 200);
+    --chart-4: oklch(75% 0.10 280);
+    --chart-5: oklch(55% 0.20 340);
+  }
+
+  .dark {
+    --background: oklch(18% 0.02 200);
+    --foreground: oklch(98% 0 0);
+    --card: oklch(18% 0.02 200);
+    --card-foreground: oklch(98% 0 0);
+    --popover: oklch(18% 0.02 200);
+    --popover-foreground: oklch(98% 0 0);
+    --primary: oklch(65% 0.18 45);
+    --primary-foreground: oklch(100% 0 0);
+    --secondary: oklch(25% 0.02 200);
+    --secondary-foreground: oklch(98% 0 0);
+    --muted: oklch(25% 0.02 200);
+    --muted-foreground: oklch(65% 0.02 200);
+    --accent: oklch(25% 0.02 200);
+    --accent-foreground: oklch(98% 0 0);
+    --destructive: oklch(55% 0.22 25);
+    --destructive-foreground: oklch(100% 0 0);
+    --border: oklch(25% 0.02 200);
+    --input: oklch(25% 0.02 200);
+    --ring: oklch(65% 0.18 45);
+    --chart-1: oklch(65% 0.18 45);
+    --chart-2: oklch(70% 0.12 120);
+    --chart-3: oklch(60% 0.18 200);
+    --chart-4: oklch(75% 0.10 280);
+    --chart-5: oklch(55% 0.20 340);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Smooth scroll behavior for single-page navigation */
+html {
+  scroll-behavior: smooth;
+}
+
+/* WhatsApp Floating Button Styles */
+.whatsapp-float-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background-color: #25D366;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+  cursor: pointer;
+  z-index: 9999;
+  opacity: 0.25;
+  transition: opacity 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  outline: none;
+  animation: whatsapp-pulse 3s ease-in-out infinite;
+}
+
+.whatsapp-float-button:hover {
+  opacity: 1;
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.6);
+}
+
+.whatsapp-float-button:focus {
+  opacity: 1;
+  outline: 2px solid #25D366;
+  outline-offset: 2px;
+}
+
+.whatsapp-float-button:active {
+  transform: scale(1.05);
+}
+
+.whatsapp-icon {
+  width: 32px;
+  height: 32px;
+  color: white;
+}
+
+.whatsapp-visible {
+  animation: whatsapp-entrance 0.5s ease-out forwards, whatsapp-pulse 3s ease-in-out 0.5s infinite;
+}
+
+/* Pulse animation for idle state */
+@keyframes whatsapp-pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+/* Entrance animation */
+@keyframes whatsapp-entrance {
+  from {
+    opacity: 0;
+    transform: scale(0.5) translateY(20px);
+  }
+  to {
+    opacity: 0.25;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+  .whatsapp-float-button {
+    bottom: 15px;
+    right: 15px;
+    width: 56px;
+    height: 56px;
+  }
+
+  .whatsapp-icon {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Ensure button doesn't overlap with other fixed elements */
+@media (max-width: 640px) {
+  .whatsapp-float-button {
+    bottom: 15px;
+    right: 15px;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .whatsapp-float-button {
+    border: 2px solid white;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .whatsapp-float-button {
+    animation: none;
+    transition: opacity 0.1s ease;
+  }
+
+  .whatsapp-visible {
+    animation: none;
+    opacity: 0.25;
+  }
+
+  .whatsapp-float-button:hover {
+    animation: none;
+  }
+}

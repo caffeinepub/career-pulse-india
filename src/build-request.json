@@ -1,35 +1,33 @@
 {
   "kind": "build_request",
-  "title": "Replace phone number 9888377403 with 9888955099 across WhatsApp and all contact links",
+  "title": "Make the Landing Page “Get Started” button open the provided Google Form",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Replace the phone number 9888377403 with 9888955099 everywhere in the frontend, including all displayed phone text, all tel: links, and all WhatsApp (wa.me) links, ensuring the country-code formatting remains consistent across display and link forms.",
+      "text": "Update the Landing Page hero section “Get Started” button so that tapping/clicking it opens this URL: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview (open in a new browser tab/window) instead of triggering the Internet Identity login flow.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "recent-messages"
+          "msg-1"
         ],
         "quotes": [
-          "Replace 9888377403 with 9888955099 everywhere including WhatsApp and links"
+          "Get Started button link to https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview whenever touch on it"
         ]
       },
       "acceptanceCriteria": [
-        "`frontend/src/constants/contact.ts` is updated so that: `CONTACT.phone.display` becomes \"+91 9888955099\", `CONTACT.phone.number` becomes \"919888955099\", and `CONTACT.phone.tel` becomes \"tel:+919888955099\".",
-        "`frontend/src/constants/contact.ts` is updated so that: `CONTACT.whatsapp.url` becomes \"https://wa.me/919888955099\" and `CONTACT.whatsapp.urlWithMessage` becomes \"https://wa.me/919888955099?text=Hi,%20I%20have%20a%20query%20about%20your%20services!\" (same prefilled message as before).",
-        "The floating WhatsApp button uses the updated WhatsApp URL with message (via `CONTACT.whatsapp.urlWithMessage`) and opens the chat to the new number.",
-        "A repo-wide check confirms there are no remaining occurrences of \"9888377403\" or \"919888377403\" in frontend source files or user-facing links."
+        "On the Landing Page hero section, clicking/tapping the button labeled “Get Started” opens https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview",
+        "The Google Form opens in a new tab/window (i.e., does not navigate away from the app tab)",
+        "Clicking “Get Started” no longer initiates the Internet Identity login flow or shows the “Loading...” state for that button"
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under `frontend/src/components/ui` (compose existing UI components instead).",
-    "Do not edit any paths listed in `frontend.immutablePaths` in SYSTEM_CONTEXT."
+    "Frontend files under the immutable paths listed in SYSTEM_CONTEXT.frontend.immutablePaths must not be modified."
   ],
   "nonGoals": [
-    "Do not change any other contact fields (email, location) or unrelated page content.",
-    "Do not add new authentication, routing, or backend features."
+    "Do not change backend canister logic or authentication behavior outside of the Landing Page “Get Started” button behavior.",
+    "Do not change the “Find Jobs” and “Hire Talent” buttons unless explicitly requested."
   ],
   "imageRequirements": {
     "required": [],

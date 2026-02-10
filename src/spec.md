@@ -1,12 +1,10 @@
 # Specification
 
 ## Summary
-**Goal:** Update the site-wide contact phone number to 9888955099 across all displayed text and contact links (tel: and WhatsApp), keeping country-code formatting consistent.
+**Goal:** Make the Landing Page hero “Get Started” button open the provided Google Form in a new tab/window instead of starting the Internet Identity login flow.
 
 **Planned changes:**
-- Update `frontend/src/constants/contact.ts` to set `CONTACT.phone.display` to `+91 9888955099`, `CONTACT.phone.number` to `919888955099`, and `CONTACT.phone.tel` to `tel:+919888955099`.
-- Update `frontend/src/constants/contact.ts` to set `CONTACT.whatsapp.url` to `https://wa.me/919888955099` and `CONTACT.whatsapp.urlWithMessage` to `https://wa.me/919888955099?text=Hi,%20I%20have%20a%20query%20about%20your%20services!` (same prefilled message as before).
-- Ensure the floating WhatsApp button uses the updated `CONTACT.whatsapp.urlWithMessage`.
-- Verify repo-wide that no frontend source files or user-facing links still reference `9888377403` or `919888377403`.
+- Update the Landing Page hero “Get Started” button action/link to open `https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview` in a new browser tab/window.
+- Remove/disable any Internet Identity login trigger and the associated “Loading...” state tied to the “Get Started” button.
 
-**User-visible outcome:** Users see the updated phone number everywhere and all call/WhatsApp contact actions open to the new number.
+**User-visible outcome:** Clicking/tapping “Get Started” opens the Google Form in a new tab/window and no longer initiates login or shows a loading state.

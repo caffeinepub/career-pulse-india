@@ -5,25 +5,24 @@
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
-  "existing_features": [
-    {
-      "id": "feature-replace-the-phone-number-9888377403-with-9888955099-everywhere-in-the-frontend-including-all-displayed-phone-text-all-tel-links-and-all-whatsapp-wa-me-links-ensuring-the-country-code-formatting-remains-consistent-across-display-and-link-forms",
-      "title": "Replace the phone number 9888377403 with 9888955099 everywhere in the frontend, including all displayed phone text, all tel: links, and all WhatsApp (wa.me) links, ensuring the country-code formatting remains consistent across display and link forms.",
-      "reqIds": [
-        "REQ-1"
-      ],
-      "version": 1
-    }
-  ],
+  "existing_features": [],
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Replace phone number 9888377403 with 9888955099 everywhere (including WhatsApp contact and all links)",
+      "summary": "Make the \"Get Started\" button open the provided Google Forms URL when tapped",
       "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Update the Landing Page hero section “Get Started” button so that tapping/clicking it opens this URL: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview (open in a new browser tab/window) instead of triggering the Internet Identity login flow.",
+      "reqIds": [
+        "REQ-1"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Replace phone number 9888377403 with 9888955099 across WhatsApp and all contact links",
+  "projectName": "Make the Landing Page “Get Started” button open the provided Google Form",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

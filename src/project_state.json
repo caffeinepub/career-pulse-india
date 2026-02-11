@@ -5,24 +5,39 @@
   "architectural_notes": [],
   "known_issues": [],
   "isFixRequest": false,
-  "existing_features": [],
+  "existing_features": [
+    {
+      "id": "feature-remove-the-login-feature-button-from-the-ui-so-that-unauthenticated-users-no-longer-see-a-login-button-in-the-header",
+      "title": "Remove the Login feature button from the UI so that unauthenticated users no longer see a \"Login\" button in the header.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-landing-page-hero-section-get-started-button-so-that-tapping-clicking-it-opens-this-url-in-a-new-browser-tab-window-https-docs-google-com-forms-d-e-1faipqlsfpd7k1jijqi71faiie9ayomescqdq98jtciftyojk9ajvhig-viewform-usp-preview-and-it-must-not-trigger-the-internet-identity-login-flow",
+      "title": "Update the Landing Page hero section \"Get Started\" button so that tapping/clicking it opens this URL in a new browser tab/window: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview, and it must not trigger the Internet Identity login flow.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    }
+  ],
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Make the \"Get Started\" button open the provided Google Forms URL when tapped",
+      "summary": "Remove the login feature button from the UI",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Update the Landing Page hero section “Get Started” button so that tapping/clicking it opens this URL: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview (open in a new browser tab/window) instead of triggering the Internet Identity login flow.",
-      "reqIds": [
-        "REQ-1"
-      ],
+      "summary": "Update the Get Started button so tapping it opens the provided Google Forms URL",
+      "reqIds": [],
       "status": "pending"
     }
   ],
-  "projectName": "Make the Landing Page “Get Started” button open the provided Google Form",
+  "projectName": "Remove header Login button and make Get Started open Google Form",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

@@ -5,14 +5,14 @@ import { useNavigate, useRouter } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { LogIn, LogOut, Shield, User, Menu } from 'lucide-react';
+import { LogOut, Shield, User, Menu } from 'lucide-react';
 import { UserType } from '../backend';
 import { setIntendedUserType } from '../App';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { useState } from 'react';
 
 export default function Header() {
-  const { identity, login, clear, isLoggingIn } = useInternetIdentity();
+  const { identity, clear } = useInternetIdentity();
   const { data: userProfile } = useGetCallerUserProfile();
   const { data: isAdmin } = useIsCallerAdmin();
   const queryClient = useQueryClient();
@@ -28,32 +28,16 @@ export default function Header() {
     });
   };
 
-  const handleAuth = async () => {
-    if (isAuthenticated) {
-      // Logout flow
-      try {
-        await clear();
-        queryClient.clear();
-        setIntendedUserType(null);
-        router.invalidate();
-        navigate({ to: '/' });
-      } catch (error) {
-        console.error('Logout error:', error);
-        window.location.href = '/';
-      }
-    } else {
-      // Login flow
-      try {
-        setIntendedUserType(UserType.candidate);
-        await login();
-      } catch (error: any) {
-        console.error('Login error:', error);
-        setIntendedUserType(null);
-        if (error.message === 'User is already authenticated') {
-          await clear();
-          setTimeout(() => login(), 300);
-        }
-      }
+  const handleLogout = async () => {
+    try {
+      await clear();
+      queryClient.clear();
+      setIntendedUserType(null);
+      router.invalidate();
+      navigate({ to: '/' });
+    } catch (error) {
+      console.error('Logout error:', error);
+      window.location.href = '/';
     }
   };
 
@@ -239,34 +223,12 @@ export default function Header() {
                   </>
                 )}
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleAuth} className="cursor-pointer">
+                <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
                   <LogOut className="mr-2 h-4 w-4" />
                   <span>Logout</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
-          )}
-
-          {!isAuthenticated && (
-            <Button
-              onClick={handleAuth}
-              disabled={isLoggingIn}
-              variant="default"
-              size="sm"
-              className="gap-2 bg-[#FF9800] hover:bg-[#FFA726] text-white border-0 font-semibold"
-            >
-              {isLoggingIn ? (
-                <>
-                  <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                  <span className="hidden sm:inline">Logging in...</span>
-                </>
-              ) : (
-                <>
-                  <LogIn className="h-4 w-4" />
-                  <span>Login</span>
-                </>
-              )}
-            </Button>
           )}
         </div>
       </div>

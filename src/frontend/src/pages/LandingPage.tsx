@@ -20,16 +20,10 @@ interface ServiceCategory {
 }
 
 export default function LandingPage() {
-  const { login, isLoggingIn } = useInternetIdentity();
+  const { login } = useInternetIdentity();
 
-  const handleGetStarted = async () => {
-    try {
-      setIntendedUserType(UserType.candidate);
-      await login();
-    } catch (error: any) {
-      console.error('Login error:', error);
-      setIntendedUserType(null);
-    }
+  const handleGetStarted = () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview', '_blank', 'noopener,noreferrer');
   };
 
   const handleStartHiring = async () => {
@@ -124,9 +118,8 @@ export default function LandingPage() {
                   size="lg" 
                   className="text-lg px-8 bg-[#FF9800] hover:bg-[#FFA726] text-white border-0 font-semibold"
                   onClick={handleGetStarted}
-                  disabled={isLoggingIn}
                 >
-                  {isLoggingIn ? 'Loading...' : 'Get Started'}
+                  Get Started
                 </Button>
               </div>
             </div>
@@ -163,62 +156,72 @@ export default function LandingPage() {
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-[#112629]/80">
-                <p className="leading-relaxed">
-                  We are a Ludhiana-based recruitment partner connecting companies with reliable talent 
-                  and candidates with stable careers across Punjab, North India, and PAN India.
+                <p>
+                  Career Pulse India is a Talent Solutions & HR Consulting Firm offering recruitment, career development, 
+                  payroll, compliance, and employer branding services across India.
                 </p>
-                <p className="leading-relaxed">
-                  We understand the unique challenges of the Indian job market and work tirelessly to bridge the gap 
-                  between talented professionals and organizations seeking growth.
+                <p>
+                  We specialize in connecting top talent with leading organizations while providing comprehensive HR solutions 
+                  to businesses of all sizes.
                 </p>
               </CardContent>
             </Card>
 
-            <Card className="border-t-4 border-t-[#FFA726] bg-white shadow-md">
+            <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-md">
               <CardHeader>
                 <CardTitle className="flex items-center gap-2 text-2xl text-[#112629]">
-                  <Target className="h-6 w-6 text-[#FFA726]" />
+                  <Target className="h-6 w-6 text-[#FF9800]" />
                   Our Mission
                 </CardTitle>
               </CardHeader>
               <CardContent className="space-y-4 text-[#112629]/80">
-                <p className="leading-relaxed">
-                  <strong className="text-[#112629]">At Career Pulse India</strong>, we empower job seekers and employers nationwide by delivering a trusted, efficient, and forward‑thinking recruitment platform. We bridge the gap between talent and opportunity, fostering meaningful career connections that drive personal success and sustainable economic growth across India's diverse industries.
+                <p>
+                  To bridge the gap between talented professionals and leading employers, creating meaningful career 
+                  opportunities and driving organizational success.
                 </p>
-                <div className="space-y-3 pt-2">
-                  <p className="text-sm font-semibold text-[#112629]">Our mission is guided by five core values:</p>
-                  <ul className="space-y-2.5 text-sm">
-                    <li className="flex items-start gap-2">
-                      <div className="h-2 w-2 rounded-full bg-[#FF9800] mt-1.5 flex-shrink-0" />
-                      <span>
-                        <strong className="text-[#FF9800]">Trust</strong> – Building transparent, lasting relationships.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="h-2 w-2 rounded-full bg-[#FF9800] mt-1.5 flex-shrink-0" />
-                      <span>
-                        <strong className="text-[#FF9800]">Efficiency</strong> – Streamlining recruitment for faster, smarter hiring.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="h-2 w-2 rounded-full bg-[#FF9800] mt-1.5 flex-shrink-0" />
-                      <span>
-                        <strong className="text-[#FF9800]">Innovation</strong> – Leveraging technology to stay ahead.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="h-2 w-2 rounded-full bg-[#FF9800] mt-1.5 flex-shrink-0" />
-                      <span>
-                        <strong className="text-[#FF9800]">Inclusivity</strong> – Creating opportunities for all.
-                      </span>
-                    </li>
-                    <li className="flex items-start gap-2">
-                      <div className="h-2 w-2 rounded-full bg-[#FF9800] mt-1.5 flex-shrink-0" />
-                      <span>
-                        <strong className="text-[#FF9800]">Growth</strong> – Driving success for individuals and businesses alike.
-                      </span>
-                    </li>
-                  </ul>
+                <p>
+                  We are committed to delivering excellence in recruitment and HR services while maintaining the highest 
+                  standards of integrity and professionalism.
+                </p>
+              </CardContent>
+            </Card>
+          </div>
+
+          <div className="mt-12">
+            <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-md">
+              <CardHeader>
+                <CardTitle className="text-2xl text-[#112629]">Core Values</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#FF9800] to-[#FFA726] flex items-center justify-center">
+                      <Target className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-[#112629] mb-2">Excellence</h3>
+                    <p className="text-sm text-[#112629]/70">Delivering exceptional quality in every service</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#FF9800] to-[#FFA726] flex items-center justify-center">
+                      <Users className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-[#112629] mb-2">Integrity</h3>
+                    <p className="text-sm text-[#112629]/70">Maintaining trust through honest practices</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#FF9800] to-[#FFA726] flex items-center justify-center">
+                      <Briefcase className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-[#112629] mb-2">Innovation</h3>
+                    <p className="text-sm text-[#112629]/70">Embracing new approaches to recruitment</p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-16 h-16 mx-auto mb-3 rounded-full bg-gradient-to-br from-[#FF9800] to-[#FFA726] flex items-center justify-center">
+                      <Handshake className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="font-semibold text-[#112629] mb-2">Partnership</h3>
+                    <p className="text-sm text-[#112629]/70">Building lasting relationships with clients</p>
+                  </div>
                 </div>
               </CardContent>
             </Card>
@@ -228,67 +231,69 @@ export default function LandingPage() {
 
       {/* Services Section */}
       <section id="services" className="py-16 md:py-24 bg-[#F8F9FA] scroll-mt-16">
-        <div className="container px-4 max-w-7xl mx-auto">
+        <div className="container px-4">
           <div className="text-center mb-12">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-[#FF9800] to-[#FFA726] bg-clip-text text-transparent">
               Our Services
             </h2>
             <p className="text-lg text-[#112629]/80 max-w-3xl mx-auto">
-              Comprehensive recruitment and HR solutions tailored to your needs
+              Comprehensive talent solutions and HR services tailored to your needs
             </p>
           </div>
 
-          <div className="space-y-12">
+          <div className="grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
             {serviceCategories.map((category, idx) => (
-              <div key={idx} className="space-y-6">
-                <div className={`flex items-center gap-3 p-4 rounded-lg bg-gradient-to-r ${category.gradient}`}>
-                  {category.icon}
-                  <h3 className="text-2xl font-bold text-white">{category.title}</h3>
-                </div>
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {category.services.map((service, serviceIdx) => (
-                    <Card key={serviceIdx} className="border-l-4 border-l-[#FF9800] hover:shadow-lg transition-shadow bg-white">
-                      <CardHeader>
-                        <CardTitle className="text-lg text-[#112629]">{service.name}</CardTitle>
-                      </CardHeader>
-                      <CardContent>
-                        <CardDescription className="text-[#112629]/70">{service.description}</CardDescription>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-              </div>
+              <Card key={idx} className="border-t-4 border-t-[#FF9800] bg-white shadow-md hover:shadow-lg transition-shadow">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-3 text-2xl">
+                    <div className={`p-2 rounded-lg bg-gradient-to-br ${category.gradient}`}>
+                      {category.icon}
+                    </div>
+                    <span className="text-[#112629]">{category.title}</span>
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="space-y-3">
+                    {category.services.map((service, serviceIdx) => (
+                      <li key={serviceIdx} className="border-l-2 border-[#FF9800] pl-4">
+                        <h4 className="font-semibold text-[#112629] mb-1">{service.name}</h4>
+                        <p className="text-sm text-[#112629]/70">{service.description}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16 text-center">
-            <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-lg max-w-2xl mx-auto">
-              <CardHeader>
-                <CardTitle className="text-2xl text-[#112629]">Ready to Get Started?</CardTitle>
-                <CardDescription className="text-[#112629]/70">
-                  Join thousands of professionals and companies finding success through Career Pulse India
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button 
-                  size="lg" 
-                  className="bg-[#FF9800] hover:bg-[#FFA726] text-white font-semibold"
-                  onClick={handleGetStarted}
-                  disabled={isLoggingIn}
-                >
-                  Find Jobs
-                </Button>
-                <Button 
-                  size="lg" 
-                  variant="outline" 
-                  className="border-[#FF9800] text-[#FF9800] hover:bg-[#FF9800] hover:text-white font-semibold"
-                  onClick={handleStartHiring}
-                  disabled={isLoggingIn}
-                >
-                  Hire Talent
-                </Button>
-              </CardContent>
-            </Card>
+      {/* CTA Section */}
+      <section className="py-16 md:py-24 bg-gradient-to-br from-[#112629] to-[#1a3a3f]">
+        <div className="container px-4 text-center">
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-white">
+            Ready to Take the Next Step?
+          </h2>
+          <p className="text-lg text-white/90 mb-8 max-w-2xl mx-auto">
+            Whether you're looking for your dream job or seeking top talent for your organization, 
+            Career Pulse India is here to help.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button 
+              size="lg" 
+              className="text-lg px-8 bg-[#FF9800] hover:bg-[#FFA726] text-white border-0 font-semibold"
+              onClick={handleGetStarted}
+            >
+              Find Jobs
+            </Button>
+            <Button 
+              size="lg" 
+              variant="outline"
+              className="text-lg px-8 bg-white hover:bg-white/90 text-[#112629] border-2 border-white font-semibold"
+              onClick={handleStartHiring}
+            >
+              Hire Talent
+            </Button>
           </div>
         </div>
       </section>
@@ -301,127 +306,130 @@ export default function LandingPage() {
               Get in Touch
             </h2>
             <p className="text-lg text-[#112629]/80">
-              Have questions? We're here to help you succeed.
+              We're here to help you succeed. Reach out to us today!
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl text-[#112629]">
-                  <Mail className="h-5 w-5 text-[#FF9800]" />
-                  Email Us
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <a 
-                  href={CONTACT.email.mailto}
-                  className="text-[#FF9800] hover:text-[#FFA726] transition-colors font-medium"
-                >
-                  {CONTACT.email.display}
-                </a>
-              </CardContent>
-            </Card>
-
-            <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl text-[#112629]">
-                  <Phone className="h-5 w-5 text-[#FF9800]" />
-                  Call Us
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
+          <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-lg">
+            <CardHeader>
+              <CardTitle className="text-2xl text-[#112629]">Contact Information</CardTitle>
+              <CardDescription className="text-[#112629]/70">
+                Connect with us through any of these channels
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid sm:grid-cols-2 gap-6">
                 <a 
                   href={CONTACT.phone.tel}
-                  className="text-[#FF9800] hover:text-[#FFA726] transition-colors font-medium"
+                  className="flex items-start gap-3 p-4 rounded-lg bg-[#F8F9FA] hover:bg-[#FF9800]/10 transition-colors group"
                 >
-                  {CONTACT.phone.display}
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-[#FF9800] to-[#FFA726] group-hover:scale-110 transition-transform">
+                    <Phone className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#112629] mb-1">Phone</h3>
+                    <p className="text-sm text-[#112629]/70">{CONTACT.phone.display}</p>
+                  </div>
                 </a>
-              </CardContent>
-            </Card>
 
-            <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl text-[#112629]">
-                  <MapPin className="h-5 w-5 text-[#FF9800]" />
-                  Visit Us
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-[#112629]/80">{CONTACT.location}</p>
-              </CardContent>
-            </Card>
+                <a 
+                  href={CONTACT.email.mailto}
+                  className="flex items-start gap-3 p-4 rounded-lg bg-[#F8F9FA] hover:bg-[#FF9800]/10 transition-colors group"
+                >
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-[#FF9800] to-[#FFA726] group-hover:scale-110 transition-transform">
+                    <Mail className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#112629] mb-1">Email</h3>
+                    <p className="text-sm text-[#112629]/70 break-all">{CONTACT.email.display}</p>
+                  </div>
+                </a>
 
-            <Card className="border-t-4 border-t-[#FF9800] bg-white shadow-md">
-              <CardHeader>
-                <CardTitle className="flex items-center gap-2 text-xl text-[#112629]">
-                  <SiWhatsapp className="h-5 w-5 text-[#FF9800]" />
-                  WhatsApp
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
                 <a 
                   href={CONTACT.whatsapp.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[#FF9800] hover:text-[#FFA726] transition-colors font-medium"
+                  className="flex items-start gap-3 p-4 rounded-lg bg-[#F8F9FA] hover:bg-[#FF9800]/10 transition-colors group"
                 >
-                  Chat with us
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-[#FF9800] to-[#FFA726] group-hover:scale-110 transition-transform">
+                    <SiWhatsapp className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#112629] mb-1">WhatsApp</h3>
+                    <p className="text-sm text-[#112629]/70">{CONTACT.phone.display}</p>
+                  </div>
                 </a>
-              </CardContent>
-            </Card>
-          </div>
 
-          <div className="mt-12 text-center">
-            <h3 className="text-xl font-semibold mb-4 text-[#112629]">Connect With Us</h3>
-            <div className="flex justify-center gap-6">
-              <a
-                href="https://www.linkedin.com/in/careerpulseindia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#0077B5] hover:opacity-70 transition-opacity"
-                aria-label="LinkedIn"
-              >
-                <SiLinkedin className="h-8 w-8" />
-              </a>
-              <a
-                href="https://www.facebook.com/share/14W8tsQn5Js/?mibextid=wwXIfr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#1877F2] hover:opacity-70 transition-opacity"
-                aria-label="Facebook"
-              >
-                <SiFacebook className="h-8 w-8" />
-              </a>
-              <a
-                href="https://www.instagram.com/careerpulseindia"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#E4405F] hover:opacity-70 transition-opacity"
-                aria-label="Instagram"
-              >
-                <SiInstagram className="h-8 w-8" />
-              </a>
-              <a
-                href="https://www.youtube.com/@CareerPulseIndia01"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#FF0000] hover:opacity-70 transition-opacity"
-                aria-label="YouTube"
-              >
-                <SiYoutube className="h-8 w-8" />
-              </a>
-              <a
-                href={CONTACT.whatsapp.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#25D366] hover:opacity-70 transition-opacity"
-                aria-label="WhatsApp"
-              >
-                <SiWhatsapp className="h-8 w-8" />
-              </a>
-            </div>
-          </div>
+                <div className="flex items-start gap-3 p-4 rounded-lg bg-[#F8F9FA]">
+                  <div className="p-2 rounded-lg bg-gradient-to-br from-[#FF9800] to-[#FFA726]">
+                    <MapPin className="h-5 w-5 text-white" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-[#112629] mb-1">Location</h3>
+                    <p className="text-sm text-[#112629]/70">{CONTACT.location}</p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="pt-6 border-t border-[#112629]/10">
+                <h3 className="font-semibold text-[#112629] mb-4 text-center">Follow Us</h3>
+                <div className="flex justify-center gap-4">
+                  <a
+                    href="https://www.facebook.com/profile.php?id=61571913088088"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                    aria-label="Visit our Facebook page"
+                  >
+                    <img 
+                      src="/assets/generated/social-facebook-fullcolor.dim_64x64.png" 
+                      alt="Facebook" 
+                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/careerpulseindia/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                    aria-label="Visit our Instagram page"
+                  >
+                    <img 
+                      src="/assets/generated/social-instagram-fullcolor.dim_64x64.png" 
+                      alt="Instagram" 
+                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/company/career-pulse-india/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                    aria-label="Visit our LinkedIn page"
+                  >
+                    <img 
+                      src="/assets/generated/social-linkedin-fullcolor.dim_64x64.png" 
+                      alt="LinkedIn" 
+                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                  </a>
+                  <a
+                    href="https://www.youtube.com/@CareerPulseIndia"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group"
+                    aria-label="Visit our YouTube channel"
+                  >
+                    <img 
+                      src="/assets/generated/social-youtube-fullcolor.dim_64x64.png" 
+                      alt="YouTube" 
+                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
+                    />
+                  </a>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
         </div>
       </section>
     </div>

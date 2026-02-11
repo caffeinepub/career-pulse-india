@@ -1,21 +1,37 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Landing Page hero Get Started opens Google Form in new tab",
+  "title": "Remove header Login button and link Get Started to Google Form",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Change the Landing Page hero “Get Started” button to open the provided Google Form URL in a new tab and stop triggering the Internet Identity login/loading state.",
+      "summary": "Remove the unauthenticated header \"Login\" button while keeping authenticated user logout via dropdown and preserving all navigation items.",
       "acceptanceCriteria": [
-        "On the Landing Page hero section, clicking/tapping the button labeled “Get Started” opens https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview",
-        "The Google Form opens in a new tab/window (i.e., does not navigate away from the app tab)",
-        "Clicking “Get Started” no longer initiates the Internet Identity login flow or shows the “Loading...” state for that button"
+        "When the user is not authenticated, the header does not render any button or menu item labeled \"Login\".",
+        "Authenticated users can still log out via the existing user dropdown (\"Logout\").",
+        "No other header navigation elements (Home/About/Services/Contact and mobile sheet) are removed or broken."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/Header.tsx",
+          "operation": "modify",
+          "description": "Remove the unauthenticated Login button rendering and any now-unused login-related imports/handlers so unauthenticated users never see a \"Login\" control in the header. Keep the authenticated avatar dropdown and its \"Logout\" action working (logout should still clear identity/query cache as currently implemented). Ensure Home/About/Services/Contact desktop links and the mobile Sheet navigation remain unchanged. Uses existing shadcn-ui components (Button/DropdownMenu/Sheet); verify the component's usage instructions before implementing. Do not modify read-only hooks under frontend/src/hooks/useInternetIdentity.ts / .tsx or frontend/src/hooks/useActor.ts."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Change the Landing Page hero \"Get Started\" CTA to open the provided Google Forms URL in a new tab without triggering Internet Identity login.",
+      "acceptanceCriteria": [
+        "Clicking/tapping the hero \"Get Started\" button opens the provided Google Forms URL in a new tab/window.",
+        "Clicking/tapping the hero \"Get Started\" button does not call the Internet Identity login flow and does not change authentication state.",
+        "The Landing Page still renders without React/TypeScript warnings or errors (e.g., no unused variables after removing/changing the login handler)."
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/LandingPage.tsx",
           "operation": "modify",
-          "description": "In the hero section only, replace the current Get Started onClick handler (which calls Internet Identity login) with logic that opens the provided Google Form URL in a new browser tab/window (e.g., window.open with noopener/noreferrer, or an anchor-like rendering). Ensure this hero button no longer uses isLoggingIn to disable itself or render the “Loading...” label. Keep the existing “Find Jobs” and “Hire Talent” buttons and their login flows unchanged."
+          "description": "Replace the current handleGetStarted login flow with a simple new-tab navigation to https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview (e.g., window.open with noopener/noreferrer). Update the hero \"Get Started\" Button (and the later \"Find Jobs\" CTA that reuses handleGetStarted) to call this new behavior and to no longer depend on isLoggingIn/loading text/disabled state tied to authentication. Keep the employer \"Hire Talent\" button’s existing login behavior intact. Clean up any unused imports/variables produced by this change. Uses existing shadcn-ui Button/Card components; verify the component's usage instructions before implementing. Do not modify read-only hooks under frontend/src/hooks/useInternetIdentity.ts / .tsx or frontend/src/hooks/useActor.ts."
         }
       ]
     }

@@ -2,10 +2,10 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-remove-the-login-feature-button-from-the-ui-so-that-unauthenticated-users-no-longer-see-a-login-button-in-the-header",
-      "featureTitle": "Remove the Login feature button from the UI so that unauthenticated users no longer see a \"Login\" button in the header.",
+      "featureId": "feature-ensure-the-only-follow-us-social-icon-set-in-the-ui-is-the-existing-footer-social-section-frontend-src-components-footer-tsx-using-social-links-frontend-src-constants-sociallinks-ts-and-do-not-add-or-keep-an-additional-social-icon-row-at-the-bottom-of-the-landing-page",
+      "featureTitle": "Ensure the only “Follow Us” social icon set in the UI is the existing footer social section (frontend/src/components/Footer.tsx) using SOCIAL_LINKS (frontend/src/constants/socialLinks.ts), and do not add or keep an additional social icon row at the bottom of the landing page.",
       "files": [
-        "frontend/src/components/Header.tsx"
+        "frontend/src/pages/LandingPage.tsx"
       ],
       "components": [
         "authorization@3.0.0",
@@ -23,8 +23,8 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-update-the-landing-page-hero-section-get-started-button-so-that-tapping-clicking-it-opens-this-url-in-a-new-browser-tab-window-https-docs-google-com-forms-d-e-1faipqlsfpd7k1jijqi71faiie9ayomescqdq98jtciftyojk9ajvhig-viewform-usp-preview-and-it-must-not-trigger-the-internet-identity-login-flow",
-      "featureTitle": "Update the Landing Page hero section \"Get Started\" button so that tapping/clicking it opens this URL in a new browser tab/window: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview, and it must not trigger the Internet Identity login flow.",
+      "featureId": "feature-remove-unused-social-icon-dependencies-imports-from-frontend-src-pages-landingpage-tsx-after-removing-the-duplicated-social-icons-section-e-g-react-icons-imports-to-keep-the-bundle-clean",
+      "featureTitle": "Remove unused social-icon dependencies/imports from frontend/src/pages/LandingPage.tsx after removing the duplicated social icons section (e.g., react-icons imports) to keep the bundle clean.",
       "files": [
         "frontend/src/pages/LandingPage.tsx"
       ],
@@ -39,7 +39,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-2"
+        "REQ-3"
       ],
       "confidence": "high"
     }

@@ -1,29 +1,40 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T18:51:16.764Z",
+  "generatedAt": "2026-02-11T10:46:20.040Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 2,
+    "total": 3,
     "implemented": 2,
     "items": [
       {
         "id": "REQ-1",
-        "summary": "Remove the Login feature button from the UI so that unauthenticated users no longer see a \"Login\" button in the header.",
+        "summary": "Ensure the only “Follow Us” social icon set in the UI is the existing footer social section (frontend/src/components/Footer.tsx) using SOCIAL_LINKS (frontend/src/constants/socialLinks.ts), and do not add or keep an additional social icon row at the bottom of the landing page.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/Header.tsx"
+          "frontend/src/pages/LandingPage.tsx",
+          "frontend/src/components/Footer.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/components/Header.tsx"
+          "frontend/src/pages/LandingPage.tsx"
         ]
       },
       {
         "id": "REQ-2",
-        "summary": "Update the Landing Page hero section \"Get Started\" button so that tapping/clicking it opens this URL in a new browser tab/window: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview, and it must not trigger the Internet Identity login flow.",
+        "summary": "Make the footer social icons appear as colorful, original/official full-color platform icons and ensure each icon click opens the correct outbound link behavior defined in frontend/src/constants/socialLinks.ts (including deep-link fallback behavior).",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/constants/socialLinks.ts",
+          "frontend/src/components/Footer.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-3",
+        "summary": "Remove unused social-icon dependencies/imports from frontend/src/pages/LandingPage.tsx after removing the duplicated social icons section (e.g., react-icons imports) to keep the bundle clean.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/pages/LandingPage.tsx"
@@ -39,7 +50,6 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/Header.tsx",
     "frontend/src/pages/LandingPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",

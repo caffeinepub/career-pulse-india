@@ -1,4 +1,5 @@
 import { CONTACT } from '@/constants/contact';
+import { SOCIAL_LINKS } from '@/constants/socialLinks';
 
 export default function Footer() {
   const handleSmoothScroll = (sectionId: string) => {
@@ -10,6 +11,19 @@ export default function Footer() {
 
   const handleLogoClick = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleSocialClick = (link: typeof SOCIAL_LINKS[number]) => (e: React.MouseEvent<HTMLAnchorElement>) => {
+    if (link.behavior === 'deep-link' && link.deepLink) {
+      e.preventDefault();
+      // Try to open the app
+      window.location.href = link.deepLink;
+      // Fallback to web URL after a short delay
+      setTimeout(() => {
+        window.open(link.url, '_blank');
+      }, 500);
+    }
+    // For 'direct' behavior, let the default anchor behavior handle it
   };
 
   return (
@@ -88,95 +102,42 @@ export default function Footer() {
             </ul>
 
             <div className="pt-2">
-              <h4 className="text-sm font-semibold text-foreground mb-2">Connect With Us</h4>
+              <h4 className="text-sm font-semibold text-foreground mb-2">Follow Us</h4>
               <div className="flex gap-3">
-                <a
-                  href="https://www.linkedin.com/in/careerpulseindia"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
-                  aria-label="LinkedIn"
-                >
-                  <img 
-                    src="/assets/generated/social-linkedin-fullcolor.dim_64x64.png" 
-                    alt="LinkedIn" 
-                    className="h-5 w-5 object-contain"
-                  />
-                </a>
-                <a
-                  href="fb://page/careerpulseindia"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = 'fb://page/careerpulseindia';
-                    setTimeout(() => {
-                      window.open('https://www.facebook.com/share/14W8tsQn5Js/?mibextid=wwXIfr', '_blank');
-                    }, 500);
-                  }}
-                  className="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
-                  aria-label="Facebook"
-                >
-                  <img 
-                    src="/assets/generated/social-facebook-fullcolor.dim_64x64.png" 
-                    alt="Facebook" 
-                    className="h-5 w-5 object-contain"
-                  />
-                </a>
-                <a
-                  href="instagram://user?username=careerpulseindia"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = 'instagram://user?username=careerpulseindia';
-                    setTimeout(() => {
-                      window.open('https://www.instagram.com/careerpulseindia', '_blank');
-                    }, 500);
-                  }}
-                  className="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
-                  aria-label="Instagram"
-                >
-                  <img 
-                    src="/assets/generated/social-instagram-fullcolor.dim_64x64.png" 
-                    alt="Instagram" 
-                    className="h-5 w-5 object-contain"
-                  />
-                </a>
-                <a
-                  href="vnd.youtube://www.youtube.com/@CareerPulseIndia01"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.location.href = 'vnd.youtube://www.youtube.com/@CareerPulseIndia01';
-                    setTimeout(() => {
-                      window.open('https://www.youtube.com/@CareerPulseIndia01', '_blank');
-                    }, 500);
-                  }}
-                  className="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
-                  aria-label="YouTube"
-                >
-                  <img 
-                    src="/assets/generated/social-youtube-fullcolor.dim_64x64.png" 
-                    alt="YouTube" 
-                    className="h-5 w-5 object-contain"
-                  />
-                </a>
-                <a
-                  href={CONTACT.whatsapp.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
-                  aria-label="WhatsApp"
-                >
-                  <img 
-                    src="/assets/generated/social-whatsapp-fullcolor.dim_64x64.png" 
-                    alt="WhatsApp" 
-                    className="h-5 w-5 object-contain"
-                  />
-                </a>
+                {SOCIAL_LINKS.map((link) => (
+                  <a
+                    key={link.name}
+                    href={link.url}
+                    target={link.behavior === 'direct' ? '_blank' : undefined}
+                    rel={link.behavior === 'direct' ? 'noopener noreferrer' : undefined}
+                    onClick={handleSocialClick(link)}
+                    className="transition-opacity hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded"
+                    aria-label={link.ariaLabel}
+                  >
+                    <img 
+                      src={link.icon} 
+                      alt={link.name} 
+                      className="h-8 w-8 object-contain"
+                    />
+                  </a>
+                ))}
               </div>
             </div>
           </div>
         </div>
 
         <div className="mt-8 pt-6 border-t border-border/40 text-center text-sm text-muted-foreground">
-          <p>© 2025. Built with ❤️ using <a href="https://caffeine.ai" target="_blank" rel="noopener noreferrer" className="hover:text-[#f58220] transition-colors">caffeine.ai</a></p>
+          <p>
+            © {new Date().getFullYear()}. Built with ❤️ using{' '}
+            <a 
+              href={`https://caffeine.ai/?utm_source=Caffeine-footer&utm_medium=referral&utm_content=${encodeURIComponent(window.location.hostname)}`}
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="hover:text-[#f58220] transition-colors"
+            >
+              caffeine.ai
+            </a>
+          </p>
         </div>
       </div>
     </footer>

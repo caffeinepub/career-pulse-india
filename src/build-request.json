@@ -1,56 +1,82 @@
 {
   "kind": "build_request",
-  "title": "Remove header Login button and make Get Started open Google Form",
+  "title": "Use colorful original social icons with links and remove duplicate social icons at the bottom",
   "priority": "normal",
   "requirements": [
     {
       "id": "REQ-1",
-      "text": "Remove the Login feature button from the UI so that unauthenticated users no longer see a \"Login\" button in the header.",
+      "text": "Ensure the only “Follow Us” social icon set in the UI is the existing footer social section (frontend/src/components/Footer.tsx) using SOCIAL_LINKS (frontend/src/constants/socialLinks.ts), and do not add or keep an additional social icon row at the bottom of the landing page.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4"
         ],
         "quotes": [
-          "remove login feature button"
+          "No i just want to social Icons colorful original with links not to add all new at bottom"
         ]
       },
       "acceptanceCriteria": [
-        "When the user is not authenticated, the header does not render any button or menu item labeled \"Login\".",
-        "Authenticated users can still log out via the existing user dropdown (\"Logout\").",
-        "No other header navigation elements (Home/About/Services/Contact and mobile sheet) are removed or broken."
+        "Landing page (frontend/src/pages/LandingPage.tsx) no longer renders its own separate “Follow Us” icon row in the Contact section.",
+        "Footer remains the single source of social icons via SOCIAL_LINKS mapping.",
+        "No other page introduces an additional, duplicate social icons row at the bottom of the page."
       ]
     },
     {
       "id": "REQ-2",
-      "text": "Update the Landing Page hero section \"Get Started\" button so that tapping/clicking it opens this URL in a new browser tab/window: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview, and it must not trigger the Internet Identity login flow.",
+      "text": "Make the footer social icons appear as colorful, original/official full-color platform icons and ensure each icon click opens the correct outbound link behavior defined in frontend/src/constants/socialLinks.ts (including deep-link fallback behavior).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4"
         ],
         "quotes": [
-          "Get Started button link to https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview whenever touch on it."
+          "social Icons colorful original with links"
         ]
       },
       "acceptanceCriteria": [
-        "Clicking/tapping the hero \"Get Started\" button opens the provided Google Forms URL in a new tab/window.",
-        "Clicking/tapping the hero \"Get Started\" button does not call the Internet Identity login flow and does not change authentication state.",
-        "The Landing Page still renders without React/TypeScript warnings or errors (e.g., no unused variables after removing/changing the login handler)."
+        "Footer “Follow Us” icons display as full-color (not monochrome) and are consistently sized/aligned.",
+        "Each footer icon opens the exact URL defined in SOCIAL_LINKS; deep-link items attempt deep-link first and fall back to opening the web URL.",
+        "All social icons in the footer are keyboard-focusable and have appropriate aria-labels (already provided by SOCIAL_LINKS)."
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "text": "Remove unused social-icon dependencies/imports from frontend/src/pages/LandingPage.tsx after removing the duplicated social icons section (e.g., react-icons imports) to keep the bundle clean.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "not to add all new at bottom"
+        ]
+      },
+      "acceptanceCriteria": [
+        "frontend/src/pages/LandingPage.tsx no longer imports unused social icon components (e.g., SiFacebook/SiInstagram/SiLinkedin/SiYoutube) if they are not rendered anywhere in that page.",
+        "The frontend builds without lint/type errors related to unused imports."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (shadcn components are read-only).",
-    "Do not modify the read-only Internet Identity hooks in frontend/src/hooks/useInternetIdentity.ts / .tsx and frontend/src/hooks/useActor.ts."
+    "Do not modify any files under frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, or frontend/src/components/ui (immutable paths).",
+    "Keep social link URLs and behaviors defined in frontend/src/constants/socialLinks.ts as the source of truth for footer social navigation."
   ],
   "nonGoals": [
-    "Do not remove or change backend authentication, authorization, or data models.",
-    "Do not implement a new authentication provider; only UI behavior changes are required.",
-    "Do not change the WhatsApp button, footer links, or other marketing section content unless required to fulfill the button/link changes."
+    "Adding new social platforms beyond the existing set in SOCIAL_LINKS.",
+    "Changing backend logic or storing social links in the backend."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

@@ -1,14 +1,28 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T18:51:16.762Z",
-  "summary": "REQ-1 and REQ-2 appear implemented: the header no longer shows a \"Login\" button for unauthenticated users (per Header summary), and the LandingPage hero \"Get Started\" button now opens the specified Google Forms URL in a new tab via window.open without invoking the Internet Identity login flow.",
+  "generatedAt": "2026-02-11T10:46:20.038Z",
+  "summary": "Diff indicates the LandingPage duplicate “Follow Us” row was removed (leaving only WhatsApp icon usage for contact), and Footer was updated to show full-color brand social icons wired to SOCIAL_LINKS with deep-link fallback and accessibility. Two additional non-requested bookkeeping/metadata files were also modified.",
   "missing_requirements": [],
-  "hallucinated_features": [],
-  "confidence": 0.68,
+  "hallucinated_features": [
+    {
+      "description": "Updated/added project tracking metadata for feature requests (AR-1..AR-4) in project_state.json.",
+      "reason": "BuildRequest does not ask to modify any project state/metadata file; it only specifies UI/icon behavior changes.",
+      "evidence": [
+        "project_state.json"
+      ]
+    },
+    {
+      "description": "Modified frontend-file-summaries.txt with broad summaries of many components unrelated to the requested social icon changes.",
+      "reason": "BuildRequest does not request generating/updating a file summary artifact; it’s not part of the stated requirements.",
+      "evidence": [
+        "frontend-file-summaries.txt"
+      ]
+    }
+  ],
+  "confidence": 0.74,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/components/Header.tsx",
     "frontend/src/pages/LandingPage.tsx",
     "project_state.json"
   ]

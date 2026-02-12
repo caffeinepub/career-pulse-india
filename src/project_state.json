@@ -4,21 +4,21 @@
   "summary": "New project",
   "architectural_notes": [],
   "known_issues": [],
-  "isFixRequest": false,
+  "isFixRequest": true,
   "existing_features": [
     {
-      "id": "feature-remove-the-login-feature-button-from-the-ui-so-that-unauthenticated-users-no-longer-see-a-login-button-in-the-header",
-      "title": "Remove the Login feature button from the UI so that unauthenticated users no longer see a \"Login\" button in the header.",
+      "id": "feature-ensure-the-only-follow-us-social-icon-set-in-the-ui-is-the-existing-footer-social-section-frontend-src-components-footer-tsx-using-social-links-frontend-src-constants-sociallinks-ts-and-do-not-add-or-keep-an-additional-social-icon-row-at-the-bottom-of-the-landing-page",
+      "title": "Ensure the only “Follow Us” social icon set in the UI is the existing footer social section (frontend/src/components/Footer.tsx) using SOCIAL_LINKS (frontend/src/constants/socialLinks.ts), and do not add or keep an additional social icon row at the bottom of the landing page.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-update-the-landing-page-hero-section-get-started-button-so-that-tapping-clicking-it-opens-this-url-in-a-new-browser-tab-window-https-docs-google-com-forms-d-e-1faipqlsfpd7k1jijqi71faiie9ayomescqdq98jtciftyojk9ajvhig-viewform-usp-preview-and-it-must-not-trigger-the-internet-identity-login-flow",
-      "title": "Update the Landing Page hero section \"Get Started\" button so that tapping/clicking it opens this URL in a new browser tab/window: https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview, and it must not trigger the Internet Identity login flow.",
+      "id": "feature-remove-unused-social-icon-dependencies-imports-from-frontend-src-pages-landingpage-tsx-after-removing-the-duplicated-social-icons-section-e-g-react-icons-imports-to-keep-the-bundle-clean",
+      "title": "Remove unused social-icon dependencies/imports from frontend/src/pages/LandingPage.tsx after removing the duplicated social icons section (e.g., react-icons imports) to keep the bundle clean.",
       "reqIds": [
-        "REQ-2"
+        "REQ-3"
       ],
       "version": 1
     }
@@ -26,18 +26,20 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Remove the login feature button from the UI",
+      "summary": "Update social icons to be colorful/original and linked, without adding a new set of icons at the bottom (keep/restore intended placement).",
       "reqIds": [],
       "status": "pending"
     },
     {
-      "id": "AR-2",
-      "summary": "Update the Get Started button so tapping it opens the provided Google Forms URL",
-      "reqIds": [],
+      "id": "AR-3",
+      "summary": "Make the footer social icons appear as colorful, original/official full-color platform icons and ensure each icon click opens the correct outbound link behavior defined in frontend/src/constants/socialLinks.ts (including deep-link fallback behavior).",
+      "reqIds": [
+        "REQ-2"
+      ],
       "status": "pending"
     }
   ],
-  "projectName": "Remove header Login button and make Get Started open Google Form",
+  "projectName": "Use colorful original social icons with links and remove duplicate social icons at the bottom",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

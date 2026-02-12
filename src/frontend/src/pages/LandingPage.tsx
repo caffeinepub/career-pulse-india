@@ -1,7 +1,7 @@
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Briefcase, Users, Building2, Target, Mail, Phone, MapPin, Handshake } from 'lucide-react';
-import { SiWhatsapp, SiFacebook, SiInstagram, SiLinkedin, SiYoutube } from 'react-icons/si';
+import { SiWhatsapp } from 'react-icons/si';
 import { useInternetIdentity } from '../hooks/useInternetIdentity';
 import { setIntendedUserType } from '../App';
 import { UserType } from '../backend';
@@ -368,64 +368,6 @@ export default function LandingPage() {
                     <h3 className="font-semibold text-[#112629] mb-1">Location</h3>
                     <p className="text-sm text-[#112629]/70">{CONTACT.location}</p>
                   </div>
-                </div>
-              </div>
-
-              <div className="pt-6 border-t border-[#112629]/10">
-                <h3 className="font-semibold text-[#112629] mb-4 text-center">Follow Us</h3>
-                <div className="flex justify-center gap-4">
-                  <a
-                    href="https://www.facebook.com/profile.php?id=61571913088088"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group"
-                    aria-label="Visit our Facebook page"
-                  >
-                    <img 
-                      src="/assets/generated/social-facebook-fullcolor.dim_64x64.png" 
-                      alt="Facebook" 
-                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
-                    />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/careerpulseindia/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group"
-                    aria-label="Visit our Instagram page"
-                  >
-                    <img 
-                      src="/assets/generated/social-instagram-fullcolor.dim_64x64.png" 
-                      alt="Instagram" 
-                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
-                    />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/company/career-pulse-india/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group"
-                    aria-label="Visit our LinkedIn page"
-                  >
-                    <img 
-                      src="/assets/generated/social-linkedin-fullcolor.dim_64x64.png" 
-                      alt="LinkedIn" 
-                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
-                    />
-                  </a>
-                  <a
-                    href="https://www.youtube.com/@CareerPulseIndia"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group"
-                    aria-label="Visit our YouTube channel"
-                  >
-                    <img 
-                      src="/assets/generated/social-youtube-fullcolor.dim_64x64.png" 
-                      alt="YouTube" 
-                      className="h-10 w-10 opacity-80 group-hover:opacity-100 transition-opacity"
-                    />
-                  </a>
                 </div>
               </div>
             </CardContent>

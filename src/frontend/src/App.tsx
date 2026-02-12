@@ -3,7 +3,7 @@ import { useInternetIdentity } from './hooks/useInternetIdentity';
 import { useGetCallerUserProfile, useIsCallerAdmin, useLogin } from './hooks/useQueries';
 import { ThemeProvider } from 'next-themes';
 import { Toaster } from '@/components/ui/sonner';
-import { RouterProvider, createRouter, createRootRoute, createRoute, Outlet, useNavigate, useRouter, useLocation } from '@tanstack/react-router';
+import { RouterProvider, createRouter, createRootRoute, createRoute, Outlet } from '@tanstack/react-router';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ProfileSetupModal from './components/ProfileSetupModal';
@@ -28,16 +28,13 @@ export function getIntendedUserType(): UserType | null {
 }
 
 function Layout() {
-  const location = useLocation();
-  const showFooter = location.pathname !== '/';
-
   return (
     <div className="flex min-h-screen flex-col bg-background">
       <Header />
       <main className="flex-1">
         <Outlet />
       </main>
-      {showFooter && <Footer />}
+      <Footer />
       <WhatsAppButton />
     </div>
   );

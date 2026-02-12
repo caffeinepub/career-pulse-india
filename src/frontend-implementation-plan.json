@@ -1,37 +1,62 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Remove header Login button and link Get Started to Google Form",
+  "title": "Deduplicate social icons and ensure full-color footer social links with correct behaviors",
   "requirements": [
     {
       "id": "REQ-1",
-      "summary": "Remove the unauthenticated header \"Login\" button while keeping authenticated user logout via dropdown and preserving all navigation items.",
+      "summary": "Remove the LandingPage “Follow Us” icon row so the Footer remains the only social icon set, sourced from SOCIAL_LINKS.",
       "acceptanceCriteria": [
-        "When the user is not authenticated, the header does not render any button or menu item labeled \"Login\".",
-        "Authenticated users can still log out via the existing user dropdown (\"Logout\").",
-        "No other header navigation elements (Home/About/Services/Contact and mobile sheet) are removed or broken."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/components/Header.tsx",
-          "operation": "modify",
-          "description": "Remove the unauthenticated Login button rendering and any now-unused login-related imports/handlers so unauthenticated users never see a \"Login\" control in the header. Keep the authenticated avatar dropdown and its \"Logout\" action working (logout should still clear identity/query cache as currently implemented). Ensure Home/About/Services/Contact desktop links and the mobile Sheet navigation remain unchanged. Uses existing shadcn-ui components (Button/DropdownMenu/Sheet); verify the component's usage instructions before implementing. Do not modify read-only hooks under frontend/src/hooks/useInternetIdentity.ts / .tsx or frontend/src/hooks/useActor.ts."
-        }
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "summary": "Change the Landing Page hero \"Get Started\" CTA to open the provided Google Forms URL in a new tab without triggering Internet Identity login.",
-      "acceptanceCriteria": [
-        "Clicking/tapping the hero \"Get Started\" button opens the provided Google Forms URL in a new tab/window.",
-        "Clicking/tapping the hero \"Get Started\" button does not call the Internet Identity login flow and does not change authentication state.",
-        "The Landing Page still renders without React/TypeScript warnings or errors (e.g., no unused variables after removing/changing the login handler)."
+        "Landing page (frontend/src/pages/LandingPage.tsx) no longer renders its own separate “Follow Us” icon row in the Contact section.",
+        "Footer remains the single source of social icons via SOCIAL_LINKS mapping.",
+        "No other page introduces an additional, duplicate social icons row at the bottom of the page."
       ],
       "file_operations": [
         {
           "path": "frontend/src/pages/LandingPage.tsx",
           "operation": "modify",
-          "description": "Replace the current handleGetStarted login flow with a simple new-tab navigation to https://docs.google.com/forms/d/e/1FAIpQLSfPd7k1jiJqI71faIie9aYOmeScqdQ98jTcIFtYoJK9AJvHig/viewform?usp=preview (e.g., window.open with noopener/noreferrer). Update the hero \"Get Started\" Button (and the later \"Find Jobs\" CTA that reuses handleGetStarted) to call this new behavior and to no longer depend on isLoggingIn/loading text/disabled state tied to authentication. Keep the employer \"Hire Talent\" button’s existing login behavior intact. Clean up any unused imports/variables produced by this change. Uses existing shadcn-ui Button/Card components; verify the component's usage instructions before implementing. Do not modify read-only hooks under frontend/src/hooks/useInternetIdentity.ts / .tsx or frontend/src/hooks/useActor.ts."
+          "description": "Remove the duplicated Contact-section “Follow Us” social icon row (currently hardcoded with social image links) so the app relies only on the footer’s social section (frontend/src/components/Footer.tsx) driven by SOCIAL_LINKS (frontend/src/constants/socialLinks.ts)."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Confirm the footer remains present as the single UI location that renders the “Follow Us” social icon set via SOCIAL_LINKS mapping; do not add any additional social rows elsewhere."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Ensure footer social icons use full-color official icon assets and clicking follows SOCIAL_LINKS behavior (including deep-link fallback), with accessible focus/labels.",
+      "acceptanceCriteria": [
+        "Footer “Follow Us” icons display as full-color (not monochrome) and are consistently sized/aligned.",
+        "Each footer icon opens the exact URL defined in SOCIAL_LINKS; deep-link items attempt deep-link first and fall back to opening the web URL.",
+        "All social icons in the footer are keyboard-focusable and have appropriate aria-labels (already provided by SOCIAL_LINKS)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/constants/socialLinks.ts",
+          "operation": "modify",
+          "description": "Ensure SOCIAL_LINKS continues to be the source of truth for footer social navigation and that each item points to the full-color official icon assets located at: frontend/public/assets/generated/social-linkedin-fullcolor.dim_64x64.png, frontend/public/assets/generated/social-facebook-fullcolor.dim_64x64.png, frontend/public/assets/generated/social-instagram-fullcolor.dim_64x64.png, frontend/public/assets/generated/social-youtube-fullcolor.dim_64x64.png, frontend/public/assets/generated/social-whatsapp-fullcolor.dim_64x64.png. Keep deep-link + fallback metadata here."
+        },
+        {
+          "path": "frontend/src/components/Footer.tsx",
+          "operation": "modify",
+          "description": "Update footer social icon rendering to guarantee consistent sizing/alignment for the full-color icon images sourced from SOCIAL_LINKS and to enforce correct outbound behavior: direct links open in a new tab; deep-link items attempt deep link first and then open the mapped web URL. Ensure anchors remain keyboard-focusable and keep aria-label sourced from SOCIAL_LINKS."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Clean up unused social icon imports/dependencies from LandingPage after removing the duplicated social icons row.",
+      "acceptanceCriteria": [
+        "frontend/src/pages/LandingPage.tsx no longer imports unused social icon components (e.g., SiFacebook/SiInstagram/SiLinkedin/SiYoutube) if they are not rendered anywhere in that page.",
+        "The frontend builds without lint/type errors related to unused imports."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/LandingPage.tsx",
+          "operation": "modify",
+          "description": "Remove now-unused social icon imports (e.g., SiFacebook/SiInstagram/SiLinkedin/SiYoutube) and any other unused imports left after deleting the duplicated “Follow Us” block, keeping only what is still rendered (e.g., keep SiWhatsapp only if still used by the WhatsApp contact card)."
         }
       ]
     }
